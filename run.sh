@@ -10,11 +10,11 @@ cleanup() {
 trap cleanup EXIT
 
 run_tests() {
-    exec mvn test -f "$MYLYN_SRC/org.tuleap.mylyn.task.parent/"
+    exec mvn integration-test -f "$MYLYN_SRC/org.tuleap.mylyn.task.parent/pom.xml"
 }
 
 build_packages() {
-    exec mvn package -f "$MYLYN_SRC/org.tuleap.mylyn.task.parent/"
+    exec mvn package -f "$MYLYN_SRC/org.tuleap.mylyn.task.parent/pom.xml"
 }
 
 
