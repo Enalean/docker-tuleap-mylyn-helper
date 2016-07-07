@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 
 readonly MYLYN_SRC='/tuleap-mylyn-src'
 
@@ -10,15 +10,15 @@ cleanup() {
 trap cleanup EXIT
 
 run_tests() {
-    exec mvn test -f "$MYLYN_SRC/org.tuleap.mylyn.task.parent/"
+    exec env DISPLAY=:99 mvn -X integration-test -f "$MYLYN_SRC/org.tuleap.mylyn.task.parent/pom.xml"
 }
 
 build_packages() {
-    exec mvn package -f "$MYLYN_SRC/org.tuleap.mylyn.task.parent/"
+    exec mvn package -f "$MYLYN_SRC/org.tuleap.mylyn.task.parent/pom.xml"
 }
 
-
-export JAVA_HOME='/usr/lib/jvm/java-1.8-openjdk/jre'
+export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64/jre'
+Xvfb :99 &
 
 if [[ '--build' == "$1" ]]; then
     build_packages
