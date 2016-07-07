@@ -1,10 +1,9 @@
-FROM alpine:3.4
+FROM ubuntu:latest
 
-RUN echo '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
-RUN apk add --no-cache maven@testing x11vnc@testing xvfb gtk+
-
-RUN mkdir ~/.vnc \
-        && x11vnc -storepasswd 1234 ~/.vnc/passwd
+RUN apt-get update && \
+        apt-get install -y openjdk-8-jdk maven x11vnc xvfb && \
+        apt-get clean && \
+        rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY run.sh /run.sh
 
