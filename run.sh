@@ -14,7 +14,7 @@ run_tests() {
 }
 
 build_packages() {
-    exec mvn package -f "$MYLYN_SRC/org.tuleap.mylyn.task.repository"
+    exec mvn package -f "$MYLYN_SRC/org.tuleap.mylyn.task.parent/pom.xml"
 }
 
 export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64/jre'
